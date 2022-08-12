@@ -1,0 +1,138 @@
+﻿@model WebApplication1.Models.CONGVIEC
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="card card-secondary">
+        <div class="card-header">
+            <br />
+            <h3 class="card-title">TẠO CÔNG VIỆC MỚI </h3>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="form-group col-md-6">
+                    <label>NGƯỜI GỬI CÔNG VIỆC &nbsp<span style="color:red;">(*)</span></label>
+                    <div class="form-control col-md-10">
+
+                        @Html.DropDownList("ID_NHAN_VIEN", null, "--CHỌN TÊN NGƯỜI GỬI--", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ID_NHAN_VIEN, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>MÃ NGƯỜI GỬI &nbsp<span style="color:red;">(*)</span></label>
+                    <div class="form-control">
+                        @Html.DropDownList("ID_NGUOI_GUI", null, "--CHỌN MÃ NGƯỜI GỬI--", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ID_NGUOI_GUI, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-5">
+                <div>
+                    <label>ĐỘ QUAN TRỌNG &nbsp<span style="color:red;">(*)</span></label>
+                </div>
+                <div class="form-control col-md-6">
+                    @Html.DropDownList("ID_DO_QUAN_TRONG", null, "--CHỌN ĐỘ QUAN TRỌNG--", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ID_DO_QUAN_TRONG, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>NGƯỜI NHẬN &nbsp<span style="color:red;">(*)</span></label>
+                    <div class="form-control col-md-10">
+                        @Html.DropDownList("ID_NGUOI_NHAN", null, "--CHỌN NGƯỜI NHẬN--", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ID_NGUOI_NHAN, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>LĨNH VỰC &nbsp<span style="color:red;">(*)</span></label>
+                    <div class="form-control">
+                        @Html.DropDownList("ID_LINH_VUC", null, "--CHỌN LĨNH VỰC--", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ID_LINH_VUC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>TÊN CÔNG VIỆC &nbsp<span style="color:red;">(*)</span></label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TIEU_DE, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TIEU_DE, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>TRẠNG THÁI CÔNG VIỆC &nbsp<span style="color:red;">(*)</span></label>
+                    <div class="form-control">
+                        @Html.DropDownList("ID_TRANG_THAI", null, "--TRẠNG THÁI CÔNG VIỆC--", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ID_TRANG_THAI, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label>NỘI DUNG CÔNG VIỆC &nbsp<span style="color:red;">(*)</span></label>
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.NOI_DUNG, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NOI_DUNG, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+
+                    <label>TẬP TIN &nbsp<span style="color:red;">(*)</span></label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("ID_TAP_TIN", null, "--CHỌN TẬP TIN--", new { htmlAttributes = new { @class = "form-control", Type = "file" } })
+                        @Html.ValidationMessageFor(model => model.ID_TAP_TIN, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label>NGÀY GỬI &nbsp<span style="color:red;">(*)</span></label>
+                    <div class="col-md-10">
+                        <input data-val="true" data-val-date="The field DoB must be a date." data-val-required="The DoB field is required." id="NGAY_GUI" name="NGAY_GUI" type="date" value="" />
+                        @Html.ValidationMessageFor(model => model.NGAY_GUI, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label>NGÀY HẾT HẠN &nbsp<span style="color:red;">(*)</span></label>
+                    <div class="col-md-10">
+                        <input data-val="true" data-val-date="The field DoB must be a date." data-val-required="The DoB field is required." id="NGAY_HET_HAN" name="NGAY_HET_HAN" type="date" value="" />
+                        @Html.ValidationMessageFor(model => model.NGAY_HET_HAN, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <br />
+            <hr class="" />
+            <div class="card-footer">
+                <div align="center">
+                    <input type="submit" value="TẠO CÔNG VIỆC" class="btn btn-default bg-info col-lg-2" />
+                </div>
+            </div>
+
+            <div align="center">
+                <button class="btn btn-default col-lg-1"> @Html.ActionLink("Trở về", "Index")</button>
+            </div>
+
+        </div>
+
+    </div>
+}

@@ -1,0 +1,68 @@
+﻿@model WebApplication1.Models.CONGVIEC
+@{
+    ViewBag.Title = "EditCVDuocgiao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="card card-info">
+        <div class="card-header">
+            <br />
+            <h3 class="card-title">CẬP NHẬT TRẠNG THÁI CÔNG VIỆC</h3>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID_CONG_VIEC)
+        <!-- /.card-header -->
+        <div class="card-body">
+            <form class="form-horizontal">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Tên </label>
+                        <div class="col-sm-10">
+                            <h5>@Html.DisplayFor(modelItem => Model.NHANVIEN.HO_TEN)</h5>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Độ quan trọng</label>
+                        <div class="col-sm-10">
+                            <h5>@Html.DisplayFor(modelItem => Model.DOQUANTRONG.TEN_DO_QUAN_TRONG)</h5>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Trạng thái hoàn thành</label>
+                        <div class="col-sm-10">
+                            <h5>@Html.DisplayFor(modelItem => Model.TRANGTHAICONGVIEC.TEN_TRANG_THAI)</h5>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Tỉ lệ hoàn thành</label>
+                        <div class="col-sm-1">
+                            @Html.EditorFor(model => model.TY_LE_HOAN_THANH, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TY_LE_HOAN_THANH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Tỉ lệ hoàn thành</label>
+                        <input type="range" min="1" max="100" value="50">
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                
+                    <div class="card-footer">
+                        <div align="center">
+                            <input type="submit" value="Save" class="btn btn-default bg-info col-lg-2" />
+                        </div>
+                    </div>
+
+                    <div align="center">
+                        <button class="btn btn-default col-lg-1"> @Html.ActionLink("Trở về", "Index")</button>
+                    </div>
+                    
+                
+                <!-- /.card-footer -->
+            </form>
+        </div>
+    </div>
+}

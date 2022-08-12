@@ -1,0 +1,85 @@
+﻿
+@model IEnumerable<WebApplication1.Models.CONGVIEC>
+
+@{
+    ViewBag.Title = "CVHoangThanh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <br />
+        <h3 class="card-title">CÔNG VIỆC ĐƯỢC GIAO ĐÃ HOÀN THÀNH</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>TÊN CÔNG VIỆC</th>
+                    <th>NGƯỜI GỬI</th>
+                    <th>Độ Quan Trọng</th>
+                    <th>TỈ LỆ HOÀN THÀNH</th>
+                    <th style="width: 40px">TRẠNG THÁI</th>
+                    <th>TRUY VẤN</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.TIEU_DE)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NHANVIEN.HO_TEN) </td>
+                        <td>@Html.DisplayFor(modelItem => item.DOQUANTRONG.TEN_DO_QUAN_TRONG)</td>
+                        <td>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-danger" style="width: @Html.DisplayFor(modelItem => item.TY_LE_HOAN_THANH)%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-danger"> @Html.DisplayFor(modelItem => item.TRANGTHAICONGVIEC.TEN_TRANG_THAI) @Html.DisplayFor(modelItem => item.TY_LE_HOAN_THANH)%<!--55% --></span></td>
+                        <td>
+                            <div class="container">
+                                <h4> <span class="badge bg-success">@Html.ActionLink("Xem Chi Tiết", "Details", new { id = item.ID_CONG_VIEC })</span></h4>
+
+                            </div>
+
+
+                        </td>
+
+                    </tr>
+
+                    @*<tr>
+                            <td>2.</td>
+                            <td>Clean database</td>
+                            <td>ĐĂNG</td>
+                            <td>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar bg-warning" style="width: 70%"></div>
+                                </div>
+                            </td>
+                            <td><span class="badge bg-warning">Hoàn thành 70%</span></td>
+                            <td>
+                                <div class="container">
+                                    <h4><span class="badge bg-info"><a>CẬP NHẬT</a></span>&ensp;<span class="badge bg-success"><a>XEM CHI TIẾT</a></span></h4>
+                                </div>
+
+
+                            </td>
+                        </tr>*@
+
+
+                </tbody>
+            }
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
